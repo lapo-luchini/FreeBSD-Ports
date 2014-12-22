@@ -1,0 +1,21 @@
+# Created by: Lapo Luchini <lapo@lapo.it>
+# $FreeBSD: sysutils/rclean/Makefile 340985 2014-01-25 05:34:12Z ak $
+
+PORTNAME=	rclean
+PORTVERSION=	1.14
+CATEGORIES=	sysutils
+MASTER_SITES=	http://www.lapo.it/rclean/
+
+MAINTAINER=	lapo@lapo.it
+COMMENT=	Command-line rc.conf ordering and cleaning tool
+
+PLIST_FILES=	bin/rclean
+USE_BZIP2=	yes
+
+do-build:
+	@(cd ${WRKSRC}; ${CC} -o ${PORTNAME} ${PORTNAME}.c)
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+
+.include <bsd.port.mk>

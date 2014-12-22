@@ -1,0 +1,38 @@
+# Created by: Lapo Luchini <lapo@lapo.it>
+# $FreeBSD: security/hamachi/Makefile 340722 2014-01-22 17:00:46Z mat $
+
+PORTNAME=	hamachi
+DISTVERSION=	0.9.9.9-20
+DISTVERSIONSUFFIX=	-lnx
+CATEGORIES=	security linux
+MASTER_SITES=	http://files.hamachi.cc/linux/
+PKGNAMEPREFIX=	linux-
+
+MAINTAINER=	lapo@lapo.it
+COMMENT=	Fast, secure, simple VPN software with NAT-traversal
+
+PATCH_DEPENDS=	upx:${PORTSDIR}/archivers/upx
+
+ONLY_FOR_ARCHS=	i386 amd64
+USE_LINUX=	yes
+
+USE_RC_SUBR=	hamachi
+PLIST_FILES=	bin/hamachi bin/hamachi-init sbin/hamachi-tuncfg
+PORTDOCS=	README CHANGES
+MAKE_ENV=	HAMACHI_DST=${PREFIX}/bin TUNCFG_DST=${PREFIX}/sbin
+
+NO_STAGE=	yes
+post-patch:
+	${RM} -f ${WRKSRC}/tuncfg/tuncfg
+	${LOCALBASE}/bin/upx -d ${WRKSRC}/hamachi
+
+do-build:
+	${CC} ${CFLAGS} -o ${WRKSRC}/tuncfg/tuncfg ${WRKSRC}/tuncfg/tuncfg.c
+
+post-install:
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+.endif
+
+.include <bsd.port.mk>
