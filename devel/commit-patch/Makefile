@@ -1,8 +1,9 @@
 # Created by: Lapo Luchin <lapo@lapo.it>
-# $FreeBSD: devel/commit-patch/Makefile 341009 2014-01-25 11:06:11Z ak $
+# $FreeBSD: head/devel/commit-patch/Makefile 372424 2014-11-10 22:12:33Z antoine $
 
 PORTNAME=	commit-patch
 PORTVERSION=	2.5
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	lapo@lapo.it
@@ -15,8 +16,9 @@ RUN_DEPENDS=	interdiff:${PORTSDIR}/misc/patchutils \
 		p5-IPC-Run>=0:${PORTSDIR}/devel/p5-IPC-Run
 
 USE_GITHUB=	yes
-USES=		gmake perl5
+USES=		gmake perl5 shebangfix
 USE_PERL5=	build # pod2man
+SHEBANG_FILES=	commit-patch
 
 GH_ACCOUNT=	caldwell
 GH_PROJECT=	commit-patch
