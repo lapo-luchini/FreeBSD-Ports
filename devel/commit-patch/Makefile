@@ -1,9 +1,8 @@
-# Created by: Lapo Luchin <lapo@lapo.it>
+# Created by: Lapo Luchini <lapo@lapo.it>
 # $FreeBSD: head/devel/commit-patch/Makefile 372424 2014-11-10 22:12:33Z antoine $
 
 PORTNAME=	commit-patch
-PORTVERSION=	2.5
-PORTREVISION=	1
+PORTVERSION=	2.5.2
 CATEGORIES=	devel
 
 MAINTAINER=	lapo@lapo.it
@@ -22,8 +21,8 @@ SHEBANG_FILES=	commit-patch
 
 GH_ACCOUNT=	caldwell
 GH_PROJECT=	commit-patch
-GH_TAGNAME=	2.5
-GH_COMMIT=	fb3a8c5
+GH_TAGNAME=	2.5.2
+GH_COMMIT=	1ce5893
 
 PLIST_FILES=	bin/commit-partial bin/commit-patch \
 		share/emacs/site-lisp/commit-patch-buffer.el \
