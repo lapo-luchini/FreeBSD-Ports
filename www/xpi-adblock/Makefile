@@ -1,13 +1,13 @@
 # Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
-# $FreeBSD: www/xpi-adblock/Makefile 340722 2014-01-22 17:00:46Z mat $
+# $FreeBSD: head/www/xpi-adblock/Makefile 372709 2014-11-18 09:37:31Z bapt $
 
 PORTNAME=	adblock
 PORTVERSION=	0.5.3.043
 DISTVERSIONSUFFIX=	-fx+fl+mz+ns
 CATEGORIES=	www
 
-MAINTAINER=	miwi@FreeBSD.org
-COMMENT=	A content filtering extension
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Content filtering extension
 
 XPI_NUM=	10
 XPI_ID=		{34274bf4-1d97-a289-e984-17e546307e4f}

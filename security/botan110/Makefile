@@ -1,5 +1,5 @@
 # Created by: Ying-Chieh Liao <ijliao@FreeBSD.org>
-# $FreeBSD: head/security/botan110/Makefile 375234 2014-12-22 12:14:27Z madpilot $
+# $FreeBSD: head/security/botan110/Makefile 394508 2015-08-17 14:20:40Z mat $
 
 PORTNAME=	botan
 PORTVERSION=	1.10.9
@@ -13,8 +13,6 @@ COMMENT=	Portable, easy to use, and efficient C++ crypto library
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
-
-LATEST_LINK=	botan${PKGNAMESUFFIX}
 
 OPTIONS_DEFINE=		SSL GMP ECC DOCS
 OPTIONS_DEFAULT=	SSL GMP ECC

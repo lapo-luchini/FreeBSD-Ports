@@ -1,41 +1,45 @@
 # Created by: johans
-# $FreeBSD: head/security/signing-party/Makefile 342430 2014-02-03 11:37:59Z johans $
+# $FreeBSD: head/security/signing-party/Makefile 393768 2015-08-09 09:03:23Z johans $
 
 PORTNAME=	signing-party
-PORTVERSION=	1.1.5
+PORTVERSION=	2.1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/signing-party/ \
-		${MASTER_SITE_DEBIAN}
-MASTER_SITE_SUBDIR=	pool/main/s/signing-party
+		DEBIAN
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	Various OpenPGP related tools
 
 RUN_DEPENDS=	gpg:${PORTSDIR}/security/gnupg \
+		p5-Net-IDN-Encode>=0:${PORTSDIR}/textproc/p5-Net-IDN-Encode \
 		p5-Class-MethodMaker>=0:${PORTSDIR}/devel/p5-Class-MethodMaker \
+		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
 		p5-GnuPG-Interface>=0:${PORTSDIR}/security/p5-GnuPG-Interface \
 		p5-Mail-Tools>=0:${PORTSDIR}/mail/p5-Mail-Tools \
 		p5-MIME-Tools>=0:${PORTSDIR}/mail/p5-MIME-Tools \
 		p5-Convert-Recode>=0:${PORTSDIR}/converters/p5-Convert-Recode \
+		p5-Term-ReadKey>=0:${PORTSDIR}/devel/p5-Term-ReadKey \
 		p5-Text-Template>=0:${PORTSDIR}/textproc/p5-Text-Template \
 		p5-GD>=0:${PORTSDIR}/graphics/p5-GD
 
-WRKSRC=		${WRKDIR}/${DISTNAME:S/_/-/:S/.orig//}
-
 CONFLICTS_INSTALL=sig2dot-[0-9]* springgraph-[0-9]*
 
-USES=		perl5 gmake shebangfix
+USES=		perl5 python gmake shebangfix
 SHEBANG_FILES=	${SCRIPTS}
+NO_WRKSUBDIR=	yes
 
 BINS=		keyanalyze/keyanalyze keyanalyze/process_keys \
-		keyanalyze/pgpring/pgppubring
-SCRIPTS=	caff/caff caff/pgp-clean caff/pgp-fixkey gpglist/gpglist \
-		gpgsigs/gpgsigs gpg-key2ps/gpg-key2ps \
-		gpg-mailkeys/gpg-mailkeys keylookup/keylookup \
+		gpgwrap/bin/gpgwrap
+SCRIPTS=	caff/caff caff/pgp-clean caff/pgp-fixkey \
+		gpgdir/gpgdir gpglist/gpglist \
+		gpgparticipants/gpgparticipants gpgsigs/gpgsigs \
+		gpg-key2latex/gpg-key2latex \
+		gpg-key2ps/gpg-key2ps gpg-mailkeys/gpg-mailkeys \
+		keyart/keyart keylookup/keylookup \
 		sig2dot/sig2dot springgraph/springgraph \
 		gpgparticipants/gpgparticipants
-MANUALS1=	${SCRIPTS:S/$/.1/} ${BINS:S/$/.1/}
+MANUALS1=	${SCRIPTS:S/$/.1/:S/keyart/&\/doc/} ${BINS:S/$/.1/:S/bin/doc/}
 EXAMPLES=	caff/caffrc.sample gpg-mailkeys/example.gpg-mailkeysrc
 PORTEXAMPLES=	${EXAMPLES:T}
 
@@ -46,24 +50,20 @@ post-patch:
 		${WRKSRC}/caff/caff
 	@${REINPLACE_CMD} -e 's|/usr/bin/pinentry-gtk-2|${LOCALBASE}/bin/pinentry-gtk-2|' \
 		${WRKSRC}/caff/README.gpg-agent
-	@${REINPLACE_CMD} -e 's|make|${GMAKE}|' \
-			-e 's|make pgpring|make|' \
+	@${REINPLACE_CMD} -e 's|[[:<:]]make|${MAKE_CMD}|' \
+			-e '/^all/s|pgpring/pgpring||' \
 		${WRKSRC}/gpgwrap/Makefile \
 		${WRKSRC}/keyanalyze/Makefile
 	@${REINPLACE_CMD} -e 's|gcc|${CC}|' ${WRKSRC}/gpgwrap/src/Makefile
-	# Rename pgpring to pgppubring to avoid conflict with mail/mutt
-	@${REINPLACE_CMD} -e 's|pgpring|pgppubring|g' \
-		${WRKSRC}/keyanalyze/pgpring/Makefile.in
-	@cd ${WRKSRC}/keyanalyze/pgpring && ${MV} pgpring.1 pgppubring.1
 
 do-install:
-	@${INSTALL_PROGRAM} ${BINS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
-	@${INSTALL_SCRIPT} ${SCRIPTS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
-	@${INSTALL_MAN} ${MANUALS1:S|^|${WRKSRC}/|} \
+	${INSTALL_PROGRAM} ${BINS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${SCRIPTS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${MANUALS1:S|^|${WRKSRC}/|} \
 		${STAGEDIR}${MAN1PREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	@${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${STAGEDIR}${EXAMPLESDIR}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/caff
-	@${INSTALL_DATA} ${WRKSRC}/caff/README* ${STAGEDIR}${DOCSDIR}/caff
+	${INSTALL_DATA} ${WRKSRC}/caff/README* ${STAGEDIR}${DOCSDIR}/caff
 
 .include <bsd.port.mk>

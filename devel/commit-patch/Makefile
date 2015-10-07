@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/devel/commit-patch/Makefile 372424 2014-11-10 22:12:33Z antoine $
+# $FreeBSD: head/devel/commit-patch/Makefile 385521 2015-05-06 15:16:53Z mat $
 
 PORTNAME=	commit-patch
 PORTVERSION=	2.5.2
@@ -20,9 +20,6 @@ USE_PERL5=	build # pod2man
 SHEBANG_FILES=	commit-patch
 
 GH_ACCOUNT=	caldwell
-GH_PROJECT=	commit-patch
-GH_TAGNAME=	2.5.2
-GH_COMMIT=	1ce5893
 
 PLIST_FILES=	bin/commit-partial bin/commit-patch \
 		share/emacs/site-lisp/commit-patch-buffer.el \

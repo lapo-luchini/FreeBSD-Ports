@@ -1,9 +1,5 @@
-# New ports collection makefile for:	xpi-cutemenus-crystalsvg
-# Date created:			4 May 2006
-# Whom:				Lapo Luchini <lapo@lapo.it>
-#
-# $FreeBSD: ports/www/xpi-cutemenus-crystalsvg/Makefile,v 1.9 2012/11/17 06:03:11 svnexp Exp $
-#
+# Created by: Lapo Luchini <lapo@lapo.it>
+# $FreeBSD: head/www/xpi-cutemenus-crystalsvg/Makefile 341199 2014-01-26 15:07:37Z miwi $
 
 PORTNAME=	cutemenus-crystalsvg
 PORTVERSION=	1.9.3

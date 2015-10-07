@@ -1,13 +1,14 @@
 # Created by: Mark A. Wicks <mwicks@kettering.edu>
-# $FreeBSD: head/devel/monotone/Makefile 343634 2014-02-10 13:54:26Z ehaupt $
+# $FreeBSD: head/devel/monotone/Makefile 390787 2015-06-28 15:20:04Z antoine $
 
 PORTNAME=	monotone
 PORTVERSION=	1.1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.monotone.ca/downloads/${PORTVERSION}/
 
 MAINTAINER=	lapo@lapo.it
-COMMENT=	A distributed version control system with digital signatures
+COMMENT=	Distributed version control system with digital signatures
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -19,11 +20,8 @@ LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libbotan-1.10.so:${PORTSDIR}/security/botan110
 
 SUB_FILES=	pkg-message
-USE_BZIP2=	yes
-USES=		iconv pkgconfig gmake perl5
+USES=		cpe iconv pkgconfig gmake perl5 lua:51 tar:bzip2 makeinfo
 USE_PERL5=	build
-USE_LUA=	5.1+
-MAKE_JOBS_SAFE=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
@@ -46,17 +44,16 @@ PLIST_FILES=	bin/mtn bin/mtn-cleanup bin/mtnopt \
 		"@dirrmtry share/zsh" \
 		"@dirrmtry etc/bash_completion.d" \
 		"@dirrm share/monotone/hooks" \
+		"@dirrmtry share/zsh/site-functions" \
 		"@dirrm share/monotone/scripts" \
 		"@dirrm share/monotone"
-.if !defined(NO_INSTALL_MANPAGES)
 INFO=		monotone
 PLIST_FILES+=	man/man1/mtn.1.gz \
 		man/man1/mtn-cleanup.1.gz \
 		man/man1/mtnopt.1.gz
-.endif
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	DOCS NLS 
+OPTIONS_DEFINE=	DOCS NLS
 
 .include <bsd.port.options.mk>
 
@@ -78,11 +75,6 @@ post-patch:
 .if ! ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -Ee '/^install-(contrib|examples)-data:/{' -e 'n' -e 'd' -e '}' ${WRKSRC}/Makefile.in
 .endif
-.if defined(NO_INSTALL_MANPAGES)
-	${REINPLACE_CMD} -Ee '/^install-(info|man): /s/ install-.*$$//' ${WRKSRC}/Makefile.in
-	${REINPLACE_CMD} -Ee '/^install-info: /s/ install-info-am$$//' \
-	-e '/^install-data-am:/s/ install-info-am$$//' ${WRKSRC}/doc/Makefile.in
-.endif
 	${REINPLACE_CMD} \
 		-e "s/REBUILD_NLS=true/REBUILD_NLS=false/g" \
 		-e "s/std::tr1::/std::/g" \
@@ -98,6 +90,5 @@ post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} NEWS UPGRADE ${STAGEDIR}${DOCSDIR}
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>

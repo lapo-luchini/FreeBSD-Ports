@@ -1,9 +1,5 @@
-# New ports collection makefile for:	xpi-searchstatus
-# Date created:			15 May 2006
-# Whom:				Lapo Luchini <lapo@lapo.it>
-#
-# $FreeBSD: ports/www/xpi-searchstatus/Makefile,v 1.13 2012/11/17 06:03:13 svnexp Exp $
-#
+# Created by: Lapo Luchini <lapo@lapo.it>
+# $FreeBSD: head/www/xpi-searchstatus/Makefile 341216 2014-01-26 15:13:24Z miwi $
 
 PORTNAME=	searchstatus
 PORTVERSION=	1.39

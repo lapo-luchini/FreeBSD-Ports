@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: sysutils/rclean/Makefile 340985 2014-01-25 05:34:12Z ak $
+# $FreeBSD: head/sysutils/rclean/Makefile 363399 2014-07-29 21:43:17Z adamw $
 
 PORTNAME=	rclean
 PORTVERSION=	1.14
@@ -10,7 +10,7 @@ MAINTAINER=	lapo@lapo.it
 COMMENT=	Command-line rc.conf ordering and cleaning tool
 
 PLIST_FILES=	bin/rclean
-USE_BZIP2=	yes
+USES=	tar:bzip2
 
 do-build:
 	@(cd ${WRKSRC}; ${CC} -o ${PORTNAME} ${PORTNAME}.c)

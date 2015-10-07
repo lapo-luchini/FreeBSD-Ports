@@ -1,9 +1,5 @@
-# New ports collection makefile for:	xpi-stumbleupon
-# Date created:			4 May 2006
-# Whom:				Lapo Luchini <lapo@lapo.it>
-#
-# $FreeBSD: ports/www/xpi-stumbleupon/Makefile,v 1.18 2012/11/17 06:03:13 svnexp Exp $
-#
+# Created by: Lapo Luchini <lapo@lapo.it>
+# $FreeBSD: head/www/xpi-stumbleupon/Makefile 364158 2014-08-06 09:11:57Z olgeni $
 
 PORTNAME=	stumbleupon
 PORTVERSION=	3.76
@@ -11,7 +7,7 @@ DISTVERSIONSUFFIX=	-fx+sm+mz
 CATEGORIES=	www
 
 MAINTAINER=	lapo@lapo.it
-COMMENT=	A collaborative surfing tool extension
+COMMENT=	Collaborative surfing tool extension
 
 LICENSE=	MPL
 
