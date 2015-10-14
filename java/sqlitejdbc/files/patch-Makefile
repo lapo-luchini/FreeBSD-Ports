@@ -1,28 +1,34 @@
---- Makefile.orig	2008-06-18 01:39:02.000000000 +0200
-+++ Makefile	2008-06-23 16:12:40.000000000 +0200
-@@ -16,6 +16,7 @@
- #
+--- Makefile.orig	2015-10-03 18:11:11 UTC
++++ Makefile
+@@ -19,7 +19,7 @@ SQLITE_UNPACKED:=$(TARGET)/sqlite-unpack
+ SQLITE_AMAL_DIR=$(TARGET)/$(SQLITE_AMAL_PREFIX)
  
- include Makefile.common
-+target := FreeBSD
  
- default: test
+-CCFLAGS:= -I$(SQLITE_OUT) -I$(SQLITE_AMAL_DIR) $(CCFLAGS)
++CCFLAGS:= -I$(SQLITE_OUT) $(CCFLAGS)
  
-@@ -29,13 +30,15 @@
- build/$(sqlitejdbc)-native.jar: $(native_classes)
- 	cd build && jar cf $(sqlitejdbc)-native.jar $(java_classlist)
+ $(SQLITE_ARCHIVE):
+ 	@mkdir -p $(@D)
+@@ -65,10 +65,10 @@ $(SQLITE_OUT)/sqlite3.o : $(SQLITE_UNPAC
+ 	    $(SQLITE_FLAGS) \
+ 	    $(SQLITE_OUT)/sqlite3.c
  
--build/$(target)/$(LIBNAME): build/$(sqlite)-$(target)/sqlite3.o build/org/sqlite/NativeDB.class
-+build/$(target)/$(LIBNAME): build/org/sqlite/NativeDB.class
- 	@mkdir -p build/$(target)
- 	$(JAVAH) -classpath build -jni -o build/NativeDB.h org.sqlite.NativeDB
- 	$(CC) $(CFLAGS) -c -o build/$(target)/NativeDB.o \
-+		-I%%LOCALBASE%%/include \
- 		src/org/sqlite/NativeDB.c
- 	$(CC) $(CFLAGS) $(LINKFLAGS) -o build/$(target)/$(LIBNAME) \
--		build/$(target)/NativeDB.o build/$(sqlite)-$(target)/*.o
-+		build/$(target)/NativeDB.o \
-+		-L%%LOCALBASE%%/lib -lsqlite3
- 	$(STRIP) build/$(target)/$(LIBNAME)
+-$(SQLITE_OUT)/$(LIBNAME): $(SQLITE_OUT)/sqlite3.o $(SRC)/org/sqlite/core/NativeDB.c $(SQLITE_OUT)/NativeDB.h
++$(SQLITE_OUT)/$(LIBNAME): $(SRC)/org/sqlite/core/NativeDB.c $(SQLITE_OUT)/NativeDB.h
+ 	@mkdir -p $(@D)
+-	$(CC) $(CCFLAGS) -c -o $(SQLITE_OUT)/NativeDB.o $(SRC)/org/sqlite/core/NativeDB.c
+-	$(CC) $(CCFLAGS) -o $@ $(SQLITE_OUT)/*.o $(LINKFLAGS)
++	$(CC) $(CCFLAGS) -c -o $(SQLITE_OUT)/NativeDB.o $(SRC)/org/sqlite/core/NativeDB.c -I/usr/local/include
++	$(CC) $(CCFLAGS) -o $@ $(SQLITE_OUT)/*.o $(LINKFLAGS) -L/usr/local/lib -lsqlite3
+ 	$(STRIP) $@
  
- build/$(sqlite)-%/sqlite3.o: dl/$(sqlite)-amal.zip
+ 
+@@ -76,7 +76,7 @@ NATIVE_DIR=src/main/resources/org/sqlite
+ NATIVE_TARGET_DIR:=$(TARGET)/classes/org/sqlite/native/$(OS_NAME)/$(OS_ARCH)
+ NATIVE_DLL:=$(NATIVE_DIR)/$(LIBNAME)
+ 
+-native: $(SQLITE_UNPACKED) $(NATIVE_DLL)
++native: $(NATIVE_DLL)
+ 
+ $(NATIVE_DLL): $(SQLITE_OUT)/$(LIBNAME)
+ 	@mkdir -p $(@D)

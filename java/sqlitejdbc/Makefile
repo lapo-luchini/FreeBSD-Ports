@@ -2,19 +2,17 @@
 # $FreeBSD: head/java/sqlitejdbc/Makefile 363374 2014-07-29 19:11:51Z adamw $
 
 PORTNAME=	sqlite-jdbc
-PORTVERSION=	3.8.7
-DISTVERSIONSUFFIX=	-sources
+PORTVERSION=	3.8.11.2
 PORTEPOCH=	1
 CATEGORIES=	java databases
-MASTER_SITES=	http://central.maven.org/maven2/org/xerial/sqlite-jdbc/${PORTVERSION}/
-EXTRACT_SUFX=	.jar
 
 MAINTAINER=	lapo@lapo.it
 COMMENT=	Java JDBC driver for SQLite
 
 LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
-WRKSRC=		${WRKDIR}/
+USE_GITHUB=	yes
+GH_ACCOUNT=	xerial
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 USES=		gmake
