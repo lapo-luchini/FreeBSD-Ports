@@ -1,5 +1,5 @@
 # Created by: Tarasov Alexey <master@preved.cn>
-# $FreeBSD: head/devel/monotone-viz/Makefile 386137 2015-05-12 11:58:21Z jbeich $
+# $FreeBSD: head/devel/monotone-viz/Makefile 404020 2015-12-19 15:13:36Z antoine $
 
 PORTNAME=	monotone-viz
 PORTVERSION=	1.0.2
@@ -12,6 +12,8 @@ COMMENT=	Visual interface for Monotone VCS with revision graphs
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN=		fails to build
 
 BUILD_DEPENDS=	lablgtk2:${PORTSDIR}/x11-toolkits/ocaml-lablgtk2
 RUN_DEPENDS+=	dot:${PORTSDIR}/graphics/graphviz \
