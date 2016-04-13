@@ -1,5 +1,5 @@
 # Created by: Ying-Chieh Liao <ijliao@FreeBSD.org>
-# $FreeBSD: head/security/botan110/Makefile 394508 2015-08-17 14:20:40Z mat $
+# $FreeBSD: head/security/botan110/Makefile 412349 2016-04-01 14:25:16Z mat $
 
 PORTNAME=	botan
 PORTVERSION=	1.10.12
@@ -38,13 +38,13 @@ CONFIGURE_ARGS+=--with-openssl
 .endif
 
 .if ${PORT_OPTIONS:MGMP}
-LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	libgmp.so:math/gmp
 CONFIGURE_ARGS+=--with-gnump
 MAKE_ARGS+=	LDFLAGS="-L${LOCALBASE}/lib"
 .endif
 
 .if ${PORT_OPTIONS:MECC}
-BUILD_DEPENDS+=	${LOCALBASE}/include/boost/tr1/memory.hpp:${PORTSDIR}/devel/boost-libs
+BUILD_DEPENDS+=	${LOCALBASE}/include/boost/tr1/memory.hpp:devel/boost-libs
 CONFIGURE_ARGS+=--with-tr1-implementation=boost
 CXXFLAGS+=	-I${LOCALBASE}/include
 .else

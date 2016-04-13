@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/www/xpi-tagzilla/Makefile 341218 2014-01-26 15:14:03Z miwi $
+# $FreeBSD: head/www/xpi-tagzilla/Makefile 412351 2016-04-01 14:33:55Z mat $
 
 PORTNAME=	tagzilla
 PORTVERSION=	0.066.2
@@ -10,7 +10,7 @@ MASTER_SITES=	http://downloads.mozdev.org/xsidebar/mods/
 MAINTAINER=	lapo@lapo.it
 COMMENT=	Lets you add a tagline to the end of an email or newsgroup posting
 
-RUN_DEPENDS=	${LOCALBASE}/lib/xpi/{DF8E5247-8E0A-4de6-B393-0735A39DFD80}/install.rdf:${PORTSDIR}/www/xpi-jslib
+RUN_DEPENDS=	${LOCALBASE}/lib/xpi/{DF8E5247-8E0A-4de6-B393-0735A39DFD80}/install.rdf:www/xpi-jslib
 
 LICENSE=	MPL # also "GPL" but doesn't specify version and doesn't contain license text
 

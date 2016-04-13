@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/devel/commit-patch/Makefile 385521 2015-05-06 15:16:53Z mat $
+# $FreeBSD: head/devel/commit-patch/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 PORTNAME=	commit-patch
 PORTVERSION=	2.5.2
@@ -11,8 +11,8 @@ COMMENT=	Commit patches or partial workspace changes to a VCS repository
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	interdiff:${PORTSDIR}/misc/patchutils \
-		p5-IPC-Run>=0:${PORTSDIR}/devel/p5-IPC-Run
+RUN_DEPENDS=	interdiff:misc/patchutils \
+		p5-IPC-Run>=0:devel/p5-IPC-Run
 
 USE_GITHUB=	yes
 USES=		gmake perl5 shebangfix

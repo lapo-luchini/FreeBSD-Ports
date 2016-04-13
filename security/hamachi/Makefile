@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/security/hamachi/Makefile 359378 2014-06-26 15:43:41Z wg $
+# $FreeBSD: head/security/hamachi/Makefile 412349 2016-04-01 14:25:16Z mat $
 
 PORTNAME=	hamachi
 DISTVERSION=	0.9.9.9-20
@@ -11,7 +11,7 @@ PKGNAMEPREFIX=	linux-
 MAINTAINER=	lapo@lapo.it
 COMMENT=	Fast, secure, simple VPN software with NAT-traversal
 
-PATCH_DEPENDS=	upx:${PORTSDIR}/archivers/upx
+PATCH_DEPENDS=	upx:archivers/upx
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes

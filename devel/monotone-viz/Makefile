@@ -1,5 +1,5 @@
 # Created by: Tarasov Alexey <master@preved.cn>
-# $FreeBSD: head/devel/monotone-viz/Makefile 404020 2015-12-19 15:13:36Z antoine $
+# $FreeBSD: head/devel/monotone-viz/Makefile 412346 2016-04-01 14:00:51Z mat $
 
 PORTNAME=	monotone-viz
 PORTVERSION=	1.0.2
@@ -15,10 +15,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN=		fails to build
 
-BUILD_DEPENDS=	lablgtk2:${PORTSDIR}/x11-toolkits/ocaml-lablgtk2
-RUN_DEPENDS+=	dot:${PORTSDIR}/graphics/graphviz \
-		mtn:${PORTSDIR}/devel/monotone \
-		lablgtk2:${PORTSDIR}/x11-toolkits/ocaml-lablgtk2
+BUILD_DEPENDS=	lablgtk2:x11-toolkits/ocaml-lablgtk2
+RUN_DEPENDS+=	dot:graphics/graphviz \
+		mtn:devel/monotone \
+		lablgtk2:x11-toolkits/ocaml-lablgtk2
 
 USES=		gmake
 USE_OCAML=	yes
