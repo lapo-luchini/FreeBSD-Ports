@@ -1,21 +1,23 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/java/sqlitejdbc/Makefile 363374 2014-07-29 19:11:51Z adamw $
+# $FreeBSD: head/java/sqlitejdbc/Makefile 412347 2016-04-01 14:08:37Z mat $
 
-PORTNAME=	sqlite-jdbc
-PORTVERSION=	3.8.11.2
-PORTEPOCH=	1
+PORTNAME=	sqlitejdbc
+PORTVERSION=	056
+DISTVERSIONPREFIX=	v
+DISTVERSIONSUFFIX=	-src
+PORTREVISION=	2
 CATEGORIES=	java databases
+MASTER_SITES=	http://files.zentus.com/sqlitejdbc/
 
 MAINTAINER=	lapo@lapo.it
 COMMENT=	Java JDBC driver for SQLite
 
-LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	xerial
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
-USES=		gmake
+USES=		gmake tar:tgz
 MAKE_ENV=	JAVA_HOME="${JAVA_HOME}"
 ALL_TARGET=	native
 
