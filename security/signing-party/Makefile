@@ -1,8 +1,8 @@
 # Created by: johans
-# $FreeBSD: head/security/signing-party/Makefile 412349 2016-04-01 14:25:16Z mat $
+# $FreeBSD: head/security/signing-party/Makefile 414107 2016-04-27 12:47:35Z johans $
 
 PORTNAME=	signing-party
-PORTVERSION=	2.2
+PORTVERSION=	2.3
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/signing-party/ \
 		DEBIAN
