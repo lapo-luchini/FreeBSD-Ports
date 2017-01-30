@@ -1,9 +1,9 @@
 # Created by: Mark A. Wicks <mwicks@kettering.edu>
-# $FreeBSD: head/devel/monotone/Makefile 412346 2016-04-01 14:00:51Z mat $
+# $FreeBSD: head/devel/monotone/Makefile 426908 2016-11-23 12:45:46Z jbeich $
 
 PORTNAME=	monotone
 PORTVERSION=	1.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.monotone.ca/downloads/${PORTVERSION}/
 
@@ -37,7 +37,7 @@ NLS_USES=		gettext
 NLS_CONFIGURE_OFF=	--disable-nls
 
 post-extract:
-	@${RM} -f ${WRKSRC}/monotone.info*
+	@${RM} ${WRKSRC}/monotone.info*
 
 post-patch:
 	@${REINPLACE_CMD} \

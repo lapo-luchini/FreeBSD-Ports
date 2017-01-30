@@ -1,5 +1,5 @@
 # Created by: Lapo Luchini <lapo@lapo.it>
-# $FreeBSD: head/www/xpi-jslib/Makefile 341209 2014-01-26 15:10:59Z miwi $
+# $FreeBSD: head/www/xpi-jslib/Makefile 424411 2016-10-21 12:51:40Z mat $
 
 PORTNAME=	jslib
 PORTVERSION=	0.1.371
@@ -20,7 +20,7 @@ XPI_DIRS=	chrome/jsliblive chrome components defaults/preferences defaults
 
 post-patch:
 		${REINPLACE_CMD} -Ee '/Suite/,/Flock/s/>2[.]0[.][*]</>2.4.*</' ${WRKSRC}/install.rdf
-		${RM} -f ${WRKSRC}/install.rdf.bak
+		${RM} ${WRKSRC}/install.rdf.bak
 
 .include "${.CURDIR}/../xpi-adblock/Makefile.xpi"
 .include <bsd.port.mk>
