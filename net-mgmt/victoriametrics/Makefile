@@ -1,4 +1,4 @@
-# $FreeBSD: head/net-mgmt/prometheus2/Makefile 566915 2021-03-01 21:47:20Z nc $
+# $FreeBSD$
 
 PORTNAME=	victoriametrics
 DISTVERSIONPREFIX=	v
