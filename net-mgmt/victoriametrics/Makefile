@@ -18,10 +18,23 @@ USE_GITHUB=	yes
 GH_TUPLE=	VictoriaMetrics:VictoriaMetrics:${DISTVERSIONFULL}
 
 GO_BUILDFLAGS=	-ldflags "-X github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-$(BUILDINFO)"
-GO_TARGET=	./app/victoria-metrics
+GO_TARGET=	./app/victoria-metrics \
+	./app/vmagent \
+	./app/vmalert \
+	./app/vmauth \
+	./app/vmbackup \
+	./app/vmrestore \
+	./app/vmctl
+
 CGO_ENABLED=	0
 
-PLIST_FILES=	bin/victoria-metrics
+PLIST_FILES=	bin/victoria-metrics \
+	bin/vmagent \
+	bin/vmalert \
+	bin/vmauth \
+	bin/vmbackup \
+	bin/vmrestore \
+	bin/vmctl
 
 # Bring DISTINFO_FILE into scope so we can get the timestamp.
 .include <bsd.port.pre.mk>
