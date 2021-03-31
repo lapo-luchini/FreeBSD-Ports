@@ -17,7 +17,7 @@ USES=		go:modules
 USE_GITHUB=	yes
 GH_TUPLE=	VictoriaMetrics:VictoriaMetrics:${DISTVERSIONFULL}
 
-GO_BUILDFLAGS=	-ldflags "-X github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-$(BUILDINFO)"
+GO_BUILDFLAGS=	-ldflags "-X github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
 GO_TARGET=	./app/victoria-metrics \
 	./app/vmagent \
 	./app/vmalert \
@@ -40,6 +40,6 @@ PLIST_FILES=	bin/victoria-metrics \
 .include <bsd.port.pre.mk>
 
 SOURCE_DATE_CMD=	date -ur $$(${GREP} TIMESTAMP ${DISTINFO_FILE} | ${CUT} -d ' ' -f 3) '+%Y%m%d-%H%M%S'
-BUILDINFO=	tags-$(DISTVERSIONFULL)
+BUILDINFO=	tags-${DISTVERSIONFULL}
 
 .include <bsd.port.post.mk>
