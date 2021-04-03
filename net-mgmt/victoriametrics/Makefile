@@ -15,9 +15,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		go:modules
 
 USE_GITHUB=	yes
-GH_TUPLE=	VictoriaMetrics:VictoriaMetrics:${DISTVERSIONFULL}
+GH_ACCOUNT=	VictoriaMetrics
+GH_PROJECT=	VictoriaMetrics
 
-GO_BUILDFLAGS=	-ldflags "-X github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
+GO_BUILDFLAGS=	-ldflags "-X github.com/${GH_ACCOUNT}/${GH_PROJECT}/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
 GO_TARGET=	./app/victoria-metrics \
 	./app/vmagent \
 	./app/vmalert \
