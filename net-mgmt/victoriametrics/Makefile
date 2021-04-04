@@ -19,7 +19,8 @@ GH_ACCOUNT=	VictoriaMetrics
 GH_PROJECT=	VictoriaMetrics
 
 GO_BUILDFLAGS=	-ldflags "-s -w -X github.com/${GH_ACCOUNT}/${GH_PROJECT}/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
-GO_TARGET=	./app/victoria-metrics \
+GO_TARGET=	\
+	./app/victoria-metrics \
 	./app/vmagent \
 	./app/vmalert \
 	./app/vmauth \
@@ -29,7 +30,8 @@ GO_TARGET=	./app/victoria-metrics \
 
 CGO_ENABLED=	0
 
-PLIST_FILES=	bin/victoria-metrics \
+PLIST_FILES=	\
+	bin/victoria-metrics \
 	bin/vmagent \
 	bin/vmalert \
 	bin/vmauth \
