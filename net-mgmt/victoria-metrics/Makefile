@@ -1,6 +1,6 @@
 # $FreeBSD$
 
-PORTNAME=	victoriametrics
+PORTNAME=	victoria-metrics
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.57.1
 DISTVERSIONSUFFIX=	-0-g2d3082bb # git describe --long v${DISTVERSION}
