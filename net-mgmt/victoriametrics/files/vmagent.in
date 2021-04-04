@@ -22,6 +22,9 @@ load_rc_config ${name}
 
 : ${vmagent_enable:=NO}
 
+vmagent_user=victoria-metrics
+vmagent_group=victoria-metrics
+
 pidfile="/var/run/${name}.pid"
 command="%%PREFIX%%/bin/${name}"
 start_cmd="/usr/sbin/daemon -f -p ${pidfile} ${command_interpreter} ${command} ${vmagent_flags}"

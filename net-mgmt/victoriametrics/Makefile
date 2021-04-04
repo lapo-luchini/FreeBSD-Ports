@@ -33,6 +33,9 @@ CGO_ENABLED=	0
 USE_RC_SUBR=	\
 	vmagent
 
+USERS=		victoria-metrics
+GROUPS=		victoria-metrics
+
 PLIST_FILES=	\
 	bin/victoria-metrics \
 	bin/vmagent \
