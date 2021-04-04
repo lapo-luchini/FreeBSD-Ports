@@ -30,6 +30,9 @@ GO_TARGET=	\
 
 CGO_ENABLED=	0
 
+USE_RC_SUBR=	\
+	vmagent
+
 PLIST_FILES=	\
 	bin/victoria-metrics \
 	bin/vmagent \
