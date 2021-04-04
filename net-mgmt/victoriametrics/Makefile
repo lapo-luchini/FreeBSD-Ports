@@ -18,7 +18,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	VictoriaMetrics
 GH_PROJECT=	VictoriaMetrics
 
-GO_BUILDFLAGS=	-ldflags "-X github.com/${GH_ACCOUNT}/${GH_PROJECT}/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
+GO_BUILDFLAGS=	-ldflags "-s -w -X github.com/${GH_ACCOUNT}/${GH_PROJECT}/lib/buildinfo.Version=$${out}-${SOURCE_DATE_CMD:sh}-${BUILDINFO}"
 GO_TARGET=	./app/victoria-metrics \
 	./app/vmagent \
 	./app/vmalert \
