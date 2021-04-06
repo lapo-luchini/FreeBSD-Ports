@@ -9,8 +9,9 @@
 #
 # vmagent_enable (bool):          Set to "NO" by default.
 #                                 Set it to "YES" to enable vmagent.
-# vmagent_flags (str):            Extra flags to pass to vmagent
-#                                 Default: empty
+# vmagent_args (str):             Extra flags to pass to vmagent.
+#                                 Default: -enableTCP6
+#                                 Example: -remoteWrite.url http://victoriametrics.test:8428/api/v1/write
 
 . /etc/rc.subr
 
@@ -21,12 +22,14 @@ desc="vmagent daemon"
 load_rc_config ${name}
 
 : ${vmagent_enable:=NO}
+: ${vmagent_args:="-enableTCP6"}
 
 vmagent_user=victoria-metrics
 vmagent_group=victoria-metrics
+vmagent_chdir=/var/db/victoria-metrics/
 
 pidfile="/var/run/${name}.pid"
 command="%%PREFIX%%/bin/${name}"
-start_cmd="/usr/sbin/daemon -f -p ${pidfile} ${command_interpreter} ${command} ${vmagent_flags}"
+start_cmd="/usr/sbin/daemon -f -p ${pidfile} -u ${vmagent_user} ${command} ${vmagent_args}"
 
 run_rc_command "$1"
