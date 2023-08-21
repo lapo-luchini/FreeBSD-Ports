@@ -1,5 +1,5 @@
 PORTNAME?=	victoria-metrics
-PORTVERSION=	1.87.7		# don't forget to update BUILDINFO_TAG
+PORTVERSION=	1.93.0		# don't forget to update BUILDINFO_TAG
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net-mgmt
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		gmake go:modules,no_targets
 USE_RC_SUBR?=	${PORTNAME}
 MAKE_ENV=	PKG_TAG=${DISTVERSIONPREFIX}${DISTVERSION} \
-		GOOS=${OPSYS:tl} BUILDINFO_TAG=2c5b260 \
+		GOOS=${OPSYS:tl} BUILDINFO_TAG=tags-v1.93.0-0-g59f7d810c \
 		DATEINFO_TAG=${_GET_DATE:sh}
 ALL_TARGET=	${PORTNAME}-pure
 
@@ -43,7 +43,7 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${VICTORIA_DATA}
 
 do-install-DOCS-on:
-	@cd ${INSTALL_WRKSRC}/docs && ${RM} robots.txt vm*
+	@cd ${INSTALL_WRKSRC}/docs && ${RM} -r robots.txt vm* VictoriaLogs/
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${INSTALL_WRKSRC}/docs/* ${STAGEDIR}${DOCSDIR}
 .endif
