@@ -2,7 +2,7 @@
 set -e
 cd `dirname "$0"`
 if [ ! -d .git ]; then
-    git init
+    git init --initial-branch=trunk
     git remote add origin git@github.com:lapo-luchini/FreeBSD-Ports.git
 fi
 touch git-marks1.txt git-marks2.txt
