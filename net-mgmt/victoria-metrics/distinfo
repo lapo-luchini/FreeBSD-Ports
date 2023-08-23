@@ -1,6 +1,6 @@
-TIMESTAMP = 1692606901
-SHA256 (VictoriaMetrics-VictoriaMetrics-v1.93.0_GH0.tar.gz) = 34bbd15ebdf6b27e6f2fd59f588cef8f0ef0eaa5b028f19dc92468f3d954c1e8
-SIZE (VictoriaMetrics-VictoriaMetrics-v1.93.0_GH0.tar.gz) = 59769216
+TIMESTAMP = 1692796114
+SHA256 (VictoriaMetrics-VictoriaMetrics-v1.93.1_GH0.tar.gz) = 66c12921d68de058cca2a7042b841cd57c23d014e536e610902eb36cc31ac77d
+SIZE (VictoriaMetrics-VictoriaMetrics-v1.93.1_GH0.tar.gz) = 59772763
 SHA256 (Azure-azure-sdk-for-go-36f766d2feba_GH0.tar.gz) = f585c8db78d75c495aa63b8dd97827cc57be2d73d7124f9a68168bf048b4239b
 SIZE (Azure-azure-sdk-for-go-36f766d2feba_GH0.tar.gz) = 14868818
 SHA256 (Azure-azure-sdk-for-go-616b812426f6_GH0.tar.gz) = bd51eaa06d0a88908afce14563b387f33582044a1d1ad6ab1c5abd01bf6fc109
