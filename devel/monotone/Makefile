@@ -1,10 +1,13 @@
 # Created by: Mark A. Wicks <mwicks@kettering.edu>
 
 PORTNAME=	monotone
-PORTVERSION=	1.1
-PORTREVISION=	19
+PORTVERSION=	1.1.20251224
 CATEGORIES=	devel
-MASTER_SITES=	http://www.monotone.ca/downloads/${PORTVERSION}/
+#MASTER_SITES=	http://www.monotone.ca/downloads/${PORTVERSION}/
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	lapo-luchini
+GH_TAGNAME=	677457f
 
 MAINTAINER=	lapo@lapo.it
 COMMENT=	Distributed version control system with digital signatures
@@ -16,10 +19,10 @@ BUILD_DEPENDS=	${LOCALBASE}/include/boost/shared_ptr.hpp:devel/boost-libs
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libidn.so:dns/libidn \
 		libsqlite3.so:databases/sqlite3 \
-		libbotan-1.10.so:security/botan110
+		libbotan-3.so:security/botan3
 
 SUB_FILES=	pkg-message
-USES=		cpe gmake iconv localbase lua:51 makeinfo perl5 \
+USES=		autoreconf cpe gmake iconv localbase lua:53 makeinfo perl5 \
 		pkgconfig python:run shebangfix tar:bzip2
 SHEBANG_FILES=	extra/mtn-hooks/monotone-ciabot.py
 USE_PERL5=	build
@@ -38,15 +41,6 @@ NLS_CONFIGURE_OFF=	--disable-nls
 
 post-extract:
 	@${RM} ${WRKSRC}/monotone.info*
-
-post-patch:
-	@${REINPLACE_CMD} \
-		-e "s/REBUILD_NLS=true/REBUILD_NLS=false/g" \
-		-e "s/std::tr1::/std::/g" \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} \
-		-e "s/std::tr1::/std::/g" \
-		${WRKSRC}/src/hash_map.hh
 
 post-patch-DOCS-off:
 	@${REINPLACE_CMD} -Ee '/^install-(contrib|examples)-data:/{' -e 'n' -e 'd' -e '}' ${WRKSRC}/Makefile.in
